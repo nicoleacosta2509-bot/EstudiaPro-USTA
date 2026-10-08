@@ -10,6 +10,8 @@ Aplicación web para que un estudiante reúna en un solo lugar sus tareas, exám
 
 **Tecnologías:** React · Spring Boot · PostgreSQL
 
+**Estándares:** convención de commits, ramas, Definition of Ready, Definition of Done y política de revisión en [ESTANDARES.md](ESTANDARES.md).
+
 ## Alcance v1.0
 
 **Incluye:** registro y consulta de tareas · registro y consulta de exámenes · organización de horarios · recordatorios de actividades y fechas · seguimiento básico del estado de las actividades.
