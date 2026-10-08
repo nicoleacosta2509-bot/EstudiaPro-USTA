@@ -16,6 +16,7 @@ En desarrollo, Vite manda las peticiones de `/api` al backend (ver `vite.config.
 Si el backend está en otra dirección, copie `.env.example` como `.env` y ajuste `VITE_API_URL`.
 
 ```bash
+npm run lint     # análisis estático con ESLint
 npm run build    # genera la versión de producción en dist/
 ```
 
