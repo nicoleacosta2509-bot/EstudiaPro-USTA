@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: estudiapro
+  datasource:
+    # Por defecto H2 en archivo (backend/data) para no perder datos al reiniciar.
+    # Para PostgreSQL arrancar con el perfil "postgres" (ver application-postgres.yml).
+    url: jdbc:h2:file:./data/estudiapro;AUTO_SERVER=TRUE
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+app:
+  cors:
+    origins: ${CORS_ORIGINS:http://localhost:5173}
+  jwt:
+    # Solo para desarrollo: en cualquier despliegue se cambia con JWT_SECRET (Base64, 256 bits o mas)
+    secret: ${JWT_SECRET:ZXN0dWRpYXByby1zZWNyZXRvLWRlLWRlc2Fycm9sbG8tc29sby1wYXJhLWxvY2FsLTIwMjY=}
+    expiration-ms: ${JWT_EXPIRATION_MS:86400000}
+  # Crea el usuario demo@estudiapro.co con datos de ejemplo si la base esta vacia
+  datos-demo: ${DATOS_DEMO:true}
