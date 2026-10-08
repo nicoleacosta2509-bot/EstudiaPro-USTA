@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16
+    container_name: estudiapro-db
+    environment:
+      POSTGRES_DB: estudiapro
+      POSTGRES_USER: estudiapro
+      POSTGRES_PASSWORD: estudiapro123
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
