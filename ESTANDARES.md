@@ -22,6 +22,9 @@ Este archivo se cambia como cualquier otro: por *pull request* hacia `dev`.
 | Backend | Java 21, Spring Boot 3.3, Maven | [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html): 2 espacios, 100 columnas |
 | Frontend | JavaScript, React 18, Vite 5 | Componentes en funciones con *hooks*, un componente por archivo, sin librerías de interfaz |
 
+**Análisis estático:** `cd frontend && npm run lint` (ESLint 9 con las reglas recomendadas de JavaScript, React y
+*hooks*, configuradas en `frontend/eslint.config.js`). Se agregó el 8 de octubre de 2026.
+
 **Idioma del código**
 
 - El dominio va en español, igual que el acta: `Tarea`, `Examen`, `Horario`, `Asignatura`, `Recordatorio`.
@@ -110,7 +113,7 @@ comprueba alguien que no estuvo cuando se hizo.
 |---|---|---|
 | 1 | Las pruebas del backend pasan. | `cd backend && mvn test` termina sin fallos. |
 | 2 | Cada criterio de aceptación que toca la API tiene al menos una prueba automática. | En `backend/src/test` hay una prueba cuyo nombre describe ese criterio, y pasa. |
-| 3 | El frontend compila. | `cd frontend && npm run build` termina con código 0. |
+| 3 | El frontend pasa el análisis estático y compila. | `cd frontend && npm run lint` y `npm run build` terminan con código 0. |
 | 4 | Si el cambio es de interfaz, el *pull request* trae una captura y los pasos para verlo. | El *pull request* incluye la imagen y los pasos con `npm run dev`. |
 | 5 | Los formularios validan antes de enviar y muestran el error junto al campo (RC-01, RC-03). | Se envía el formulario vacío y con una fecha pasada; cada campo muestra su mensaje. |
 | 6 | Si cambia un endpoint, una variable de entorno o un comando, el README cambia en el mismo cambio. | El diff del *pull request* incluye `README.md`, `backend/README.md` o `frontend/README.md`. |
@@ -128,7 +131,7 @@ mismo día, con la lista de abajo. Lo que tiene interfaz lo valida además la in
 
 **Lista de revisión** (se copia en cada *pull request*):
 
-- [ ] `mvn test` y `npm run build` pasan.
+- [ ] `mvn test`, `npm run lint` y `npm run build` pasan.
 - [ ] No hay contraseñas, llaves, tokens ni archivos `.env` en el diff.
 - [ ] Toda consulta nueva filtra por el estudiante autenticado (nadie ve datos de otro).
 - [ ] Lo nuevo en el backend tiene una prueba que lo cubre.
@@ -160,9 +163,10 @@ no cambian el comportamiento, redacción de comentarios y optimizaciones que nad
 
 Mejor escribirlo que fingir:
 
-- No hay formateador automático configurado (Spotless o Prettier); el estilo se revisa con la lista.
+- No hay formateador automático (Spotless o Prettier) ni análisis estático en el backend; el frontend usa ESLint
+  desde el 8 de octubre de 2026.
 - El frontend no tiene pruebas automáticas. Por eso el punto 4 de la DoD pide captura y pasos.
-- Falta registrar la prueba en Microsoft Edge (RC-05) y medir los tiempos de respuesta de RC-02.
+- Falta registrar la prueba en Microsoft Edge (RC-05) y repetir la medición de RC-02 con PostgreSQL.
 - La versión 1.0 inicial y la integración de este documento se hicieron sin *issues* ni *pull requests*,
   porque estos acuerdos todavía no existían. De aquí en adelante se trabaja con ellos.
 
